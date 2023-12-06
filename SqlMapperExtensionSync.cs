@@ -42,7 +42,7 @@ public static partial class SqlMapperExtension
         CommandFlags commandFlags = CommandFlags.Buffered,
         in CancellationToken cancellationToken = default) where T : class, new()
     {
-        List<object> entities = connection.Query<object>(
+        var entities = connection.Query<object>(
             new CommandDefinition(
                 $"SELECT * FROM {Helper.GetTableName<T>()}",
                 null,
@@ -52,7 +52,7 @@ public static partial class SqlMapperExtension
                 commandFlags,
                 cancellationToken)).AsList();
 
-        if (entities.Count is 0) return ReadOnlySpan<T>.Empty;
+        if (entities.Count is 0) return [];
 
         var entitiesSpan = CollectionsMarshal.AsSpan(entities);
 

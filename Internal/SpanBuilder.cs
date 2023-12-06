@@ -10,11 +10,11 @@ internal ref struct SpanBuilder
     private Span<char> _chars;
     private int _pos;
 
-    public SpanBuilder() : this(Span<char>.Empty) { }
+    public SpanBuilder() : this([]) { }
 
     public SpanBuilder(Span<char> initialBuffer)
     {
-        _arrayToReturnToPool = Array.Empty<char>();
+        _arrayToReturnToPool = [];
         _chars = initialBuffer;
         _pos = 0;
     }
@@ -24,7 +24,7 @@ internal ref struct SpanBuilder
         readonly get => _pos;
         set
         {
-            if (value <= 0) throw new ArgumentOutOfRangeException(nameof(value), $"{nameof(Length)} can not be smaller or equal to 0");
+            if (value < 0) throw new ArgumentOutOfRangeException(nameof(value), $"{nameof(Length)} can not be smaller than 0");
             if (value > _chars.Length) throw new ArgumentOutOfRangeException(nameof(value), $"{nameof(Length)} can not be greater than {nameof(Capacity)}");
             _pos = value;
         }

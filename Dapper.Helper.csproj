@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -11,10 +11,17 @@
     <PackageProjectUrl>https://github.com/BlyZeYT/Dapper.Helper</PackageProjectUrl>
     <RepositoryUrl>https://github.com/BlyZeYT/Dapper.Helper</RepositoryUrl>
     <PackageTags>dapper, dapper.contrib, dapper.helper, blyze</PackageTags>
+    <Version>2.0.0</Version>
+    <PackageReleaseNotes>Upgrade to .NET 8</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.0.123" />
+	<Using Remove="System.Net.Http" />
+	<Using Remove="System.IO" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.24" />
   </ItemGroup>
 
 </Project>

@@ -45,7 +45,7 @@ public static partial class SqlMapperExtension
         CommandFlags commandFlags = CommandFlags.Buffered,
         CancellationToken cancellationToken = default) where T : class, new()
     {
-        List<object> entities = (await connection.QueryAsync<object>(
+        var entities = (await connection.QueryAsync<object>(
             new CommandDefinition(
                 $"SELECT * FROM {Helper.GetTableName<T>()}",
                 null,
